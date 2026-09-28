@@ -1,0 +1,31 @@
+<mujoco model="ur5e RRT obstacle scene">
+  <include file="ur5e.xml"/>
+
+  <statistic center="0.2 -0.1 0.35" extent="1.0" meansize="0.08"/>
+
+  <visual>
+    <headlight diffuse="0.65 0.65 0.65" ambient="0.15 0.15 0.15" specular="0 0 0"/>
+    <global azimuth="125" elevation="-22"/>
+  </visual>
+
+  <asset>
+    <texture name="rrt_grid" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 .15 .2"
+      width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+    <material name="rrt_grid" texture="rrt_grid" texrepeat="1 1" texuniform="true"/>
+    <material name="obstacle_red" rgba="0.82 0.15 0.12 1"/>
+    <material name="obstacle_orange" rgba="0.95 0.45 0.08 1"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 1.5" directional="true"/>
+    <geom name="floor" size="1.2 1.2 0.01" type="plane" material="rrt_grid"/>
+    <body name="obstacle_pillar" pos="0.64 -0.06 0.32">
+      <geom name="obstacle_pillar_geom" type="box" size="0.07 0.09 0.32"
+        material="obstacle_red" contype="1" conaffinity="1"/>
+    </body>
+    <body name="obstacle_pillar_2" pos="0.48 -0.34 0.27">
+      <geom name="obstacle_pillar_2_geom" type="box" size="0.065 0.085 0.27"
+        material="obstacle_orange" contype="1" conaffinity="1"/>
+    </body>
+  </worldbody>
+</mujoco>
